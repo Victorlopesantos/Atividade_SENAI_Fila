@@ -17,18 +17,13 @@ Para compilar e executar o programa, você precisa ter um compilador C instalado
 Como usar
 
     1 - Clone este repositório para o seu ambiente local.
-
     2 - Navegue até o diretório do projeto.
-
     3 - Compile o código-fonte executando o seguinte comando no terminal: gcc -o fila main.c
-    
     4 - Execute o programa com o seguinte comando: ./fila
-    
     5 - Será exibido um menu com opções numeradas. Escolha a opção desejada digitando o número correspondente e pressione Enter.
-
     6 - Siga as instruções apresentadas na tela para interagir com a fila.
     
-    Contribuição
+Contribuição
 
 Contribuições são bem-vindas! Se você encontrar algum problema, tiver sugestões de melhorias ou quiser adicionar novos recursos, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 Licença
