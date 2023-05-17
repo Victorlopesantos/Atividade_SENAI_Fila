@@ -12,6 +12,18 @@ typedef struct
 
 void enqueue(Fila *fila) 
 {
+    
+    if (fila->fila == NULL)
+    {
+        fila->fila = (int *)malloc(MAX_SIZE * sizeof(int));
+
+        if (fila->fila == NULL)
+        {
+            printf("Falha na alocacao de memoria. Encerrando o programa.\n");
+            exit(1);
+        }
+    }
+
     if (fila->end == MAX_SIZE) 
     {
         printf("\nA fila esta cheia.\n\n");
@@ -29,9 +41,10 @@ void enqueue(Fila *fila)
 
 void denqueue(Fila *fila) 
 {
+
     if (fila->start == fila->end) 
     {
-        printf("\nAçao impossivel. A fila esta vazia.\n\n");
+        printf("\nAcao impossivel. A fila esta vazia.\n\n");
     } 
     else 
     {
@@ -42,6 +55,7 @@ void denqueue(Fila *fila)
 
 void display(Fila *fila) 
 {
+
     if (fila->start == fila->end) 
     {
         printf("A fila esta vazia.\n\n");
@@ -60,6 +74,7 @@ void display(Fila *fila)
 
 void clearQueue(Fila *fila) 
 {
+
     fila->end = 0;
     fila->start = 0;
     printf("\nA fila foi zerada.\n\n");
@@ -67,6 +82,7 @@ void clearQueue(Fila *fila)
 
 void menu() 
 {
+
     printf("=== MENU ===\n");
     printf("1. Enfileirar\n");
     printf("2. Desenfileirar\n");
@@ -76,28 +92,15 @@ void menu()
     printf("============\n");
 }
 
-int main() 
+void hubFunction(int option, Fila *fila)
 {
-    Fila fila;
-    fila.fila = (int*)malloc(MAX_SIZE * sizeof(int)); // Alocação dinâmica da memória.
-
-    if (fila.fila == NULL) 
-    {
-        printf("Falha na alocaçao de memoria. Encerrando o programa.\n");
-        return 1;
-    }
-
-    fila.end = 0;
-    fila.start = 0;
-
-    int option;
-
     do 
     {
         menu();
         scanf("%d", &option);
 
-        switch (option) {
+        switch (option) 
+        {
             case 1:
                 enqueue(&fila);
                 break;
@@ -114,10 +117,23 @@ int main()
                 printf("Saindo do programa...\n");
                 break;
             default:
-                printf("\nOpçao invalida\n\n");
+                printf("\nOpcao invalida\n\n");
                 break;
         }
     } while (option != 5);
+}
+
+int main() 
+{
+
+    Fila fila;
+    fila.fila = NULL;
+    fila.end = 0;
+    fila.start = 0;
+
+    int option = 0;
+
+    hubFunction(option, &fila);
 
     free(fila.fila); // Liberação da memória alocada
 
