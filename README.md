@@ -11,10 +11,7 @@ O programa oferece as seguintes funcionalidades:
     4 - Limpar fila: Remove todos os elementos da fila.
     5 - Sair: Encerra o programa.
 
-Requisitos
-
-Para compilar e executar o programa, você precisa ter um compilador C instalado em seu sistema, como o GCC (GNU Compiler Collection).
-Como usar
+Como usar:
 
     1 - Clone este repositório para o seu ambiente local.
     2 - Navegue até o diretório do projeto.
@@ -23,7 +20,7 @@ Como usar
     5 - Será exibido um menu com opções numeradas. Escolha a opção desejada digitando o número correspondente e pressione Enter.
     6 - Siga as instruções apresentadas na tela para interagir com a fila.
     
-Contribuição
+Contribuição:
 
 Contribuições são bem-vindas! Se você encontrar algum problema, tiver sugestões de melhorias ou quiser adicionar novos recursos, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 Licença
