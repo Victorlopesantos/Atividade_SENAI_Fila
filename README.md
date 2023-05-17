@@ -1,7 +1,6 @@
 Fila em C
 
 Este é um programa simples em C que implementa uma fila utilizando alocação dinâmica de memória. O programa permite enfileirar e desenfileirar elementos, exibir a fila e limpar todos os elementos da fila.
-Funcionalidades
 
 O programa oferece as seguintes funcionalidades:
 
