@@ -1,16 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX_SIZE 100
 
-int fila[MAX_SIZE];
-int end;
-int start;
-
-void enqueue()
+typedef struct 
 {
-    if (end == MAX_SIZE)
+    int *fila;
+    int end;
+    int start;
+} Fila;
+
+void enqueue(Fila *fila) 
+{
+    if (fila->end == MAX_SIZE) 
     {
-        printf("\nA ja esta fila esta cheia.\n\n");
+        printf("\nA fila esta cheia.\n\n");
         return;
     }
 
@@ -18,49 +22,50 @@ void enqueue()
     printf("Informe um numero: ");
     scanf("%d", &number);
 
-    fila[end] = number;
+    fila->fila[fila->end] = number;
+    fila->end++;
     printf("\nNumero enfileirado.\n\n");
-    end++;
 }
 
-void denqueue()
+void denqueue(Fila *fila) 
 {
-    if (start == end)
+    if (fila->start == fila->end) 
     {
-        printf("\nAcao impossivel. A fila esta vazia.\n\n");
-    }
-    else
+        printf("\nAçao impossivel. A fila esta vazia.\n\n");
+    } 
+    else 
     {
         printf("\nNumero desenfileirado!\n\n");
-        start++;
+        fila->start++;
     }
 }
 
-void display()
+void display(Fila *fila) 
 {
-    if (start == end)
+    if (fila->start == fila->end) 
     {
         printf("A fila esta vazia.\n\n");
-    }
-    else
+    } 
+    else 
     {
-        printf("|");
-        for (int i = start; i < end; i++)
+        printf("Fila: ");
+        for (int i = fila->start; i < fila->end; i++) 
         {
-            printf(" %d |", fila[i]);
+            printf("%d ", fila->fila[i]);
         }
-        printf("\n\n");
+
+        printf("\nTotal de elementos na fila: %d\n\n", fila->end - fila->start); // Conta quantos elementos estão na fila.
     }
 }
 
-void clearQueue()
+void clearQueue(Fila *fila) 
 {
-    end = 0;
-    start = 0;
+    fila->end = 0;
+    fila->start = 0;
     printf("\nA fila foi zerada.\n\n");
 }
 
-void menu()
+void menu() 
 {
     printf("=== MENU ===\n");
     printf("1. Enfileirar\n");
@@ -71,51 +76,50 @@ void menu()
     printf("============\n");
 }
 
-void hubfunction(int option)
+int main() 
 {
+    Fila fila;
+    fila.fila = (int*)malloc(MAX_SIZE * sizeof(int)); // Alocação dinâmica da memória.
 
-    do
+    if (fila.fila == NULL) 
     {
-        
-    menu();
-
-    scanf("%d", &option);
-
-    switch (option)
-    {
-
-    case 1:
-        enqueue();
-        break;
-    case 2:
-        denqueue();
-        break;
-    case 3:
-        display();
-        break;
-    case 4:
-        clearQueue();
-        break;
-    case 5:
-        printf("Saindo do programa...\n");
-        break;
-    default:
-        printf("\nOpcao invalida\n\n");
-        break;
+        printf("Falha na alocaçao de memoria. Encerrando o programa.\n");
+        return 1;
     }
 
+    fila.end = 0;
+    fila.start = 0;
+
+    int option;
+
+    do 
+    {
+        menu();
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                enqueue(&fila);
+                break;
+            case 2:
+                denqueue(&fila);
+                break;
+            case 3:
+                display(&fila);
+                break;
+            case 4:
+                clearQueue(&fila);
+                break;
+            case 5:
+                printf("Saindo do programa...\n");
+                break;
+            default:
+                printf("\nOpçao invalida\n\n");
+                break;
+        }
     } while (option != 5);
-    
-}
 
-int main()
-{
-    int option = 0;
-
-    end = 0;
-    start = 0;
-
-    hubfunction(option);
+    free(fila.fila); // Liberação da memória alocada
 
     return 0;
 }
